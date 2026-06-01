@@ -73,11 +73,14 @@
     const keyword = searchInput.value.trim().toLowerCase();
     const filtered = results.map(normalize).filter((item) => {
       return `${item.name} ${item.className}`.toLowerCase().includes(keyword);
+    }).sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      return new Date(a.submittedAt).getTime() - new Date(b.submittedAt).getTime();
     });
 
     body.innerHTML = filtered.map((item, index) => `
       <tr>
-        <td>${index + 1}</td>
+        <td><strong>#${index + 1}</strong></td>
         <td>${escapeHtml(item.name)}</td>
         <td>${escapeHtml(item.className)}</td>
         <td><strong>${item.score}</strong></td>
