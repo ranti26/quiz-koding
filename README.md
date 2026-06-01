@@ -17,7 +17,8 @@ Guru dan pengembang media pembelajaran interaktif.
 - ✅ Feedback benar atau salah setelah siswa menjawab.
 - 🏆 Skor akhir otomatis, 10 poin untuk setiap soal.
 - 📊 Dashboard admin untuk melihat nama siswa, kelas, skor, jumlah benar, dan waktu submit.
-- 📁 Database manual menggunakan `db.json`.
+- 📊 Database online menggunakan Google Sheets.
+- 📁 Cadangan database manual menggunakan `db.json`.
 - 📤 Export nilai ke CSV dan JSON.
 - 📥 Import JSON hasil siswa ke dashboard admin.
 
@@ -48,7 +49,9 @@ https://ranti26.github.io/quiz-koding/admin.html
 
 ## 🗂️ Mode Database JSON Manual
 
-GitHub Pages adalah hosting statis, jadi JavaScript tidak bisa menulis langsung ke file `db.json` di repository. Karena itu, project ini memakai alur database JSON manual.
+Mode utama yang disarankan adalah **Google Sheets**, karena nilai siswa bisa masuk otomatis. Panduan lengkapnya ada di [SETUP-GOOGLE-SHEETS.md](SETUP-GOOGLE-SHEETS.md).
+
+GitHub Pages adalah hosting statis, jadi JavaScript tidak bisa menulis langsung ke file `db.json` di repository. Karena itu, `db.json` hanya dipakai sebagai mode cadangan manual.
 
 Alur penggunaan:
 
@@ -71,6 +74,7 @@ Alur penggunaan:
 |-- quiz-submit.js
 |-- db.json
 |-- google-apps-script.js
+|-- SETUP-GOOGLE-SHEETS.md
 |-- LICENSE.md
 `-- README.md
 ```

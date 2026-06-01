@@ -1,11 +1,11 @@
 window.QUIZ_CONFIG = {
-  // Mode JSON manual: dashboard admin akan mencoba membaca file ini.
+  // Cadangan JSON manual jika Google Sheets belum disambungkan.
   dbJsonUrl: "db.json",
 
-  // Isi setelah Google Apps Script dipublish sebagai Web App.
+  // Isi URL Web App Google Apps Script di sini agar nilai siswa masuk otomatis ke Google Sheets.
   // Contoh: "https://script.google.com/macros/s/AKfycbxxxx/exec"
   endpointUrl: "",
 
-  // Ganti kode ini sebelum dipakai online. Kode ini dipakai admin.html untuk membaca daftar nilai.
+  // Samakan dengan ADMIN_KEY di google-apps-script.js.
   adminKey: "admin123"
 };
