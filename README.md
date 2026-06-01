@@ -1,22 +1,27 @@
-# Quiz Interaktif Koding dan Kecerdasan Artifisial
+# 🚀 Quiz Interaktif Koding dan Kecerdasan Artifisial
 
-> Dibuat untuk pembelajaran siswa SD oleh **Ranti Mulyanti**.
+> Media pembelajaran digital untuk siswa SD karya **Ranti Mulyanti**.
 
-Quiz berbasis **HTML, CSS, dan JavaScript** yang siap dipasang di **GitHub Pages**. Siswa mengisi identitas, mengerjakan soal satu per satu dengan timer, lalu nilai akhir tersimpan dan bisa dibaca melalui dashboard admin.
+Selamat datang di project **Quiz Interaktif Koding dan Kecerdasan Artifisial**. Aplikasi ini dibuat untuk membantu siswa belajar dan mengerjakan asesmen dengan tampilan yang lebih menarik, ringan, dan mudah digunakan melalui **GitHub Pages**.
 
-## Fitur
+## 👩‍🏫 Pembuat
 
-- Tampilan quiz ramah siswa sekolah dasar.
-- Identitas siswa: nama dan kelas.
-- 10 soal, masing-masing bernilai 10 poin.
-- Timer 60 detik untuk setiap soal.
-- Feedback benar atau salah setelah menjawab.
-- Skor akhir otomatis.
-- Dashboard admin untuk melihat nama, kelas, skor, jumlah benar, dan waktu submit.
-- Export CSV untuk rekap nilai.
-- Export dan import JSON untuk mode database manual.
+**Ranti Mulyanti**  
+Guru dan pengembang media pembelajaran interaktif.
 
-## Halaman
+## ✨ Fitur Utama
+
+- 🎒 Form identitas siswa: nama dan kelas.
+- 🧩 10 soal interaktif berbasis materi Koding dan Kecerdasan Artifisial.
+- ⏱️ Timer 60 detik untuk setiap soal.
+- ✅ Feedback benar atau salah setelah siswa menjawab.
+- 🏆 Skor akhir otomatis, 10 poin untuk setiap soal.
+- 📊 Dashboard admin untuk melihat nama siswa, kelas, skor, jumlah benar, dan waktu submit.
+- 📁 Database manual menggunakan `db.json`.
+- 📤 Export nilai ke CSV dan JSON.
+- 📥 Import JSON hasil siswa ke dashboard admin.
+
+## 🔗 Halaman
 
 - `index.html`  
   Halaman utama untuk siswa mengerjakan quiz.
@@ -25,60 +30,61 @@ Quiz berbasis **HTML, CSS, dan JavaScript** yang siap dipasang di **GitHub Pages
   Dashboard admin untuk melihat dan mengelola nilai.
 
 - `db.json`  
-  Database manual statis. File ini bisa diganti/upload ulang ke GitHub jika ingin dashboard membaca data dari JSON.
+  Database manual statis untuk menyimpan rekap nilai.
 
-## Cara Pakai di GitHub Pages
+## 🌐 Link GitHub Pages
 
-1. Upload semua file di folder ini ke repository GitHub.
-2. Buka `Settings > Pages`.
-3. Pilih `Deploy from a branch`.
-4. Pilih branch `main` dan folder `/root`.
-5. Tunggu link GitHub Pages aktif.
-
-Contoh link:
+Halaman siswa:
 
 ```text
-https://username.github.io/quiz-koding/
-https://username.github.io/quiz-koding/admin.html
+https://ranti26.github.io/quiz-koding/
 ```
 
-## Mode Database JSON Manual
+Dashboard admin:
 
-GitHub Pages adalah hosting statis, jadi JavaScript tidak bisa menulis langsung ke `db.json` di repository. Alur manual yang bisa dipakai:
+```text
+https://ranti26.github.io/quiz-koding/admin.html
+```
 
-1. Buka `admin.html`.
-2. Jika ada data lokal, klik **Export JSON**.
-3. File akan terunduh dengan nama `db.json`.
-4. Upload/ganti file `db.json` di repository GitHub.
-5. Setelah GitHub Pages update, dashboard admin akan membaca data dari `db.json`.
+## 🗂️ Mode Database JSON Manual
 
-Untuk menggabungkan data dari komputer lain, gunakan tombol **Import JSON**, lalu export ulang menjadi `db.json`.
+GitHub Pages adalah hosting statis, jadi JavaScript tidak bisa menulis langsung ke file `db.json` di repository. Karena itu, project ini memakai alur database JSON manual.
 
-Jika siswa mengerjakan dari perangkat masing-masing:
+Alur penggunaan:
 
 1. Siswa menyelesaikan quiz.
 2. Siswa klik **Unduh Hasil JSON** di halaman skor akhir.
 3. Admin membuka `admin.html`.
 4. Admin klik **Import JSON** untuk memasukkan file hasil siswa.
 5. Setelah semua file masuk, admin klik **Export JSON**.
-6. Upload hasil export sebagai `db.json` ke GitHub.
+6. Upload hasil export sebagai `db.json` ke repository GitHub.
+7. Dashboard admin akan membaca data terbaru dari `db.json`.
 
-## Struktur Project
+## 📦 Struktur Project
 
 ```text
 .
-├── index.html
-├── admin.html
-├── admin.js
-├── quiz-config.js
-├── quiz-submit.js
-├── db.json
-├── google-apps-script.js
-└── README.md
+|-- index.html
+|-- admin.html
+|-- admin.js
+|-- quiz-config.js
+|-- quiz-submit.js
+|-- db.json
+|-- google-apps-script.js
+|-- LICENSE.md
+`-- README.md
 ```
 
-## Kredit
+## 🛡️ Lisensi dan Hak Cipta
 
-Materi dan pengembangan quiz: **Ranti Mulyanti**
+Project ini dilindungi oleh lisensi **All Rights Reserved**.
 
-Dirancang agar kegiatan asesmen terasa lebih interaktif, ringan, dan mudah digunakan di kelas.
+Copyright (c) 2026 **Ranti Mulyanti**.
+
+Kode, desain, materi, dan aset pada project ini **tidak boleh disalin, dimodifikasi, dipublikasikan ulang, dijual, atau digunakan oleh pihak lain tanpa izin tertulis dari Ranti Mulyanti**.
+
+Lihat detail lisensi di [LICENSE.md](LICENSE.md).
+
+## 💡 Catatan
+
+Project ini dibuat untuk mendukung pembelajaran yang lebih interaktif, menyenangkan, dan mudah dikelola oleh guru.
