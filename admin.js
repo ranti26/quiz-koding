@@ -60,6 +60,7 @@
 
   function normalize(item) {
     return {
+      id: item.id || "",
       name: item.name || item.nama || "-",
       className: item.className || item.kelas || "-",
       score: Number(item.score || item.skor || 0),
@@ -87,6 +88,7 @@
         <td>${item.correct}</td>
         <td>${item.wrong}</td>
         <td>${formatDate(item.submittedAt)}</td>
+        <td><button class="danger small delete-btn" data-id="${escapeHtml(item.id)}" data-name="${escapeHtml(item.name)}">Delete</button></td>
       </tr>
     `).join("");
 
@@ -142,6 +144,53 @@
       statusText.textContent = `${error.message} Menampilkan data lokal sebagai cadangan.`;
     }
     render();
+  }
+
+  async function sendAdminAction(action, payload = {}) {
+    if (!config.endpointUrl) return false;
+    await fetch(config.endpointUrl, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({
+        action,
+        key: adminKeyInput.value.trim(),
+        ...payload
+      })
+    });
+    return true;
+  }
+
+  async function deleteResult(id, name) {
+    if (!confirm(`Hapus data nilai ${name || "siswa ini"}?`)) return;
+
+    results = results.filter((item) => normalize(item).id !== id);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(results));
+    render();
+    statusText.textContent = "Data dihapus dari tampilan. Mengirim perintah delete ke Google Sheets...";
+
+    try {
+      await sendAdminAction("delete", { id });
+      statusText.textContent = "Perintah delete terkirim. Klik Muat Data untuk menyegarkan daftar.";
+    } catch (error) {
+      statusText.textContent = "Gagal mengirim perintah delete ke Google Sheets. Data lokal sudah dihapus.";
+    }
+  }
+
+  async function resetResults() {
+    if (!confirm("Reset semua data nilai? Tindakan ini akan menghapus seluruh rekap di dashboard dan Google Sheets.")) return;
+
+    results = [];
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(results));
+    render();
+    statusText.textContent = "Data lokal direset. Mengirim perintah reset ke Google Sheets...";
+
+    try {
+      await sendAdminAction("reset");
+      statusText.textContent = "Perintah reset terkirim. Klik Muat Data untuk memastikan data sudah kosong.";
+    } catch (error) {
+      statusText.textContent = "Gagal mengirim perintah reset ke Google Sheets. Data lokal sudah direset.";
+    }
   }
 
   function exportCsv() {
@@ -205,6 +254,17 @@
   document.getElementById("exportJsonBtn").addEventListener("click", exportJson);
   document.getElementById("importJsonBtn").addEventListener("click", () => document.getElementById("importJsonInput").click());
   document.getElementById("importJsonInput").addEventListener("change", (event) => importJson(event.target.files[0]));
+  document.getElementById("resetBtn").addEventListener("click", resetResults);
+  document.getElementById("toggleKeyBtn").addEventListener("click", () => {
+    const isPassword = adminKeyInput.type === "password";
+    adminKeyInput.type = isPassword ? "text" : "password";
+    document.getElementById("toggleKeyBtn").textContent = isPassword ? "Sembunyi" : "Lihat";
+  });
+  body.addEventListener("click", (event) => {
+    const button = event.target.closest(".delete-btn");
+    if (!button) return;
+    deleteResult(button.dataset.id, button.dataset.name);
+  });
   searchInput.addEventListener("input", render);
   loadResults();
 })();
